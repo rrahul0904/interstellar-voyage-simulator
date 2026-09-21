@@ -24,7 +24,7 @@ export function createVoyage(design: ShipDesign, mode: UniverseMode, route: Rout
     gamma: 1,
     distanceMeters: 0,
     remainingPropellantKg: design.propellantMassKg,
-    totalMassKg: validation.totalDryMassKg + design.propelantMassKg,
+    totalMassKg: validation.totalDryMassKg + design.propellantMassKg,
     crewAlive: design.crewCount,
     shieldIntegrity: design.shieldIntegrity,
     log: [`Voyage initialized for ${route.destinationName}.`]
@@ -35,7 +35,7 @@ export function stepVoyage(
   state: VoyageState,
   design: ShipDesign,
   input: StepInput
-d): VoyageState {
+): VoyageState {
   if (input.earthDtSeconds <= 0) throw new RangeError("earthDtSeconds must be positive");
   if (Math.abs(input.throttle) > design.propulsion.maxThrottle) {
     throw new RangeError("throttle outside propulsion limits");
