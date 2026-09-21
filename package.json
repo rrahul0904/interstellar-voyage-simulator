@@ -8,7 +8,8 @@
     "package:static": "node scripts/package-static.mjs",
     "build": "npm run build:ts && npm run package:static",
     "test": "npm run build:ts && node --test tests/*.test.mjs",
-    "check": "npm run test && npm run build"
+    "check": "npm run test && npm run build && npm run smoke",
+    "smoke": "node --test tests/static-smoke.test.mjs"
   },
   "engines": {
     "node": ">=22"
