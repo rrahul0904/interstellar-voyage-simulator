@@ -1,14 +1,19 @@
 {
   "name": "interstellar-voyage-simulator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "test": "npm run build && node --test tests/*.test.mjs",
-    "check": "npm run test"
+    "build:ts": "tsc -p tsconfig.json",
+    "package:static": "node scripts/package-static.mjs",
+    "build": "npm run build:ts && npm run package:static",
+    "test": "npm run build:ts && node --test tests/*.test.mjs",
+    "check": "npm run test && npm run build"
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
   }
 }
