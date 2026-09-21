@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An original browser-based interstellar voyage simulator exploring relativistic travel, propulsion trade-offs, and mission survivability." />
+  <meta name="theme-color" content="#07111f" />
+  <title>Interstellar Voyage Simulator</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="/" aria-label="Interstellar Voyage Simulator home">
+      <span class="brand-mark">IVS</span>
+      <span>Interstellar Voyage Simulator</span>
+    </a>
+    <span class="status-dot"><i></i> browser-local simulation</span>
+  </header>
+
+  <main class="shell">
+    <section id="shipyard" class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">SHIPYARD // MISSION CONFIGURATION</p>
+        <h1>Space is <em>farther</em> than it looks.</h1>
+        <p class="lede">Build a vessel, pick a star, and watch relativistic time, fuel, shielding, and distance evolve at real wall-clock speed. No fast-forward.</p>
+        <div class="principles">
+          <span>c-limit enforced</span>
+          <span>proper time tracked</span>
+          <span>fiction labeled</span>
+        </div>
+      </div>
+
+      <div class="panel launch-panel">
+        <div class="panel-heading">
+          <div><span class="kicker">01</span><h2>Configure vessel</h2></div>
+          <span class="chip">fail-closed launch</span>
+        </div>
+        <div class="form-grid">
+          <label>Universe mode
+            <select id="mode">
+              <option value="real">Real physics</option>
+              <option value="scifi">Sci-fi drive</option>
+            </select>
+          </label>
+          <label>Ship name
+            <input id="ship-name" value="Pathfinder" maxlength="48" autocomplete="off" />
+          </label>
+          <label>Crew
+            <input id="crew" type="number" min="1" max="64" value="12" />
+          </label>
+          <label>Propellant (tonnes)
+            <input id="propellant" type="number" min="10" max="5000" step="10" value="800" />
+          </label>
+          <label class="wide">Destination
+            <select id="destination">
+              <option>Proxima Centauri</option>
+              <option>Barnard's Star</option>
+              <option>Sirius</option>
+              <option>TRAPPIST-1</option>
+            </select>
+          </label>
+        </div>
+        <div class="module-strip" aria-label="Installed modules">
+          <span>Habitat Ring</span><span>Life Support</span><span>Primary Reactor</span><span>Dust Shield</span>
+        </div>
+        <p id="validation" class="validation" role="alert"></p>
+        <button id="launch" class="primary-button">Launch mission <span>→</span></button>
+      </div>
+    </section>
+
+    <section id="flight-deck" hidden>
+      <div class="flight-heading">
+        <div>
+          <p class="eyebrow">FLIGHT DECK // LIVE TELEMETRY</p>
+          <h1 id="mission-title">Mission</h1>
+          <p id="mission-meta" class="subtle"></p>
+        </div>
+        <div class="badges"><span id="mode-badge" class="badge"></span><span id="phase-badge" class="badge muted"></span></div>
+      </div>
+
+      <div class="progress-shell" role="progressbar" aria-label="Mission distance progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progress-bar"></div>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="panel telemetry-panel">
+          <div class="panel-heading"><div><span class="kicker">02</span><h2>Relativistic telemetry</h2></div></div>
+          <div id="telemetry" class="metrics"></div>
+        </section>
+
+        <aside class="panel controls-panel">
+          <div class="panel-heading"><div><span class="kicker">03</span><h2>Mission control</h2></div></div>
+          <div class="control-stack">
+            <button id="pause" class="secondary-button">Pause</button>
+            <button id="reset" class="ghost-button">Return to shipyard</button>
+          </div>
+          <div class="science-card"><span>SCIENCE BOUNDARY</span><p id="science-note"></p></div>
+        </aside>
+      </div>
+
+      <section class="panel log-panel">
+        <div class="panel-heading"><div><span class="kicker">04</span><h2>Mission log</h2></div><span class="chip">local only</span></div>
+        <ol id="mission-log" class="mission-log"></ol>
+      </section>
+    </section>
+
+    <section class="ledger-section">
+      <div class="section-heading"><p class="eyebrow">LOCAL ARCHIVE</p><h2>Completed voyages</h2></div>
+      <div id="ledger" class="ledger"></div>
+    </section>
+  </main>
+
+  <footer class="shell site-footer">
+    <p>Original educational simulation. No accounts, no server-side telemetry, no copied branding or proprietary assets.</p>
+  </footer>
+
+  <script type="module" src="/dist/web/app.js"></script>
+</body>
+</html>
