@@ -15,4 +15,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci
       - run: npm run check
+      - name: Verify packaged production artifact
+        run: |
+          test -f public-build/index.html
+          test -f public-build/styles.css
+          test -f public-build/dist/web/app.js
